@@ -9,8 +9,9 @@ const nextConfig = {
       },
     ],
   },
-  assetPrefix: './', // Ensures proper asset paths for static hosting
+  assetPrefix: '/', // Ensures proper asset paths for static hosting (or use 'https://your-cdn-url.com/' if you're using a CDN)
   trailingSlash: true, // Adds a trailing slash to all paths for better static hosting compatibility
+  target: 'serverless', // Ensures the app is built for serverless functions
 };
 
 export default nextConfig;
