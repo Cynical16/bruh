@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 25% 11%;
+    --foreground: 210 40% 98%;
+    --card: 260 25% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 260 25% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 252 100% 69%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 260 30% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 260 30% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 260 30% 15%;
+    --accent-foreground: 210 40% 98%;
+    --border: 260 30% 15%;
+    --input: 260 30% 15%;
+    --ring: 252 100% 69%;
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.gradient-section {
+  position: relative;
+  overflow: hidden;
+  background-image: 
+    radial-gradient(at 27% 37%, hsla(262, 83%, 58%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 97% 21%, hsla(268, 100%, 70%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, hsla(265, 100%, 55%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, hsla(257, 96%, 67%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, hsla(252, 87%, 54%, 0.15) 0px, transparent 50%);
+}
+
+.gradient-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(89, 0, 255, 0.05) 25%, 
+    rgba(89, 0, 255, 0.1) 50%,
+    rgba(89, 0, 255, 0.05) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.mesh-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 6rem;
+  padding: 6rem;
+  height: 100%;
+  pointer-events: none;
+}
+
+.mesh-spot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  opacity: 0.15;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+    rgba(147, 51, 234, 0.6) 0%,
+    rgba(89, 0, 255, 0.3) 40%,
+    transparent 70%
+  );
+  filter: blur(80px);
+  animation: pulse 8s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.mesh-spot:nth-child(2n) {
+  --delay: 2s;
+}
+
+.mesh-spot:nth-child(3n) {
+  --delay: 4s;
+}
+
+.mesh-spot:nth-child(4n) {
+  --delay: 6s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.1) translate(10px, 10px);
+  }
+}
+
+.glass-card {
+  position: relative;
+  background: rgba(13, 10, 23, 0.75);
+  backdrop-filter: blur(12px);
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  display: none;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: var(--radius);
+  background: linear-gradient(45deg, rgba(147, 51, 234, 0.2), rgba(89, 0, 255, 0.2));
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(45deg, #9333ea, #5900ff, #7c3aed);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.accordion-gradient {
+  background: linear-gradient(180deg, rgba(89, 0, 255, 0.1) 0%, rgba(147, 51, 234, 0.05) 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #9333ea, #5900ff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Add a specific class for product cards */
+.product-card {
+  background: rgba(13, 10, 23, 0.5);
+}
+
+.product-card::before {
+  background: linear-gradient(
+    45deg,
+    rgba(147, 51, 234, 0.4),
+    rgba(89, 0, 255, 0.4),
+    rgba(124, 58, 237, 0.4)
+  );
+}
+
+/* Add hover effect for product cards */
+.product-card:hover {
+  background: rgba(17, 13, 30, 0.6);
+}
+
+/* Update accordion styles */
+[data-radix-accordion-content] {
+  background: rgba(13, 10, 23, 0.95) !important;
+}
+
+[data-radix-accordion-trigger] {
+  background: rgba(13, 10, 23, 0.95) !important;
+}
+
+/* Update footer styles */
+.footer-border {
+  border-top: 1px solid rgba(147, 51, 234, 0.1);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
